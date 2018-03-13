@@ -50,6 +50,8 @@ Command Line Arguments
 
 resources: 
 
-https://golang.github.io/dep/
-https://play.golang.com/
-https://godoc.org/
++ https://golang.github.io/dep/
+
++ https://play.golang.com/
+
++ https://godoc.org/
