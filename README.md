@@ -6,23 +6,23 @@
     A name begins with a letter or an underscore
     May have any number of aditional letters, digitds and underscores
 
-    * case matters (heapSort vs. HeapSort)
+* case matters (heapSort vs. HeapSort)
 
     Go has 25 keywords
 
     ~ three dozen predeclared names (int, true, new)
-        * Constants, Types, Functions 
-        * not reserved
+    * Constants, Types, Functions 
+    * not reserved
     
     If an entity is declared within a function it is local to that function
 
     If declared outside the function it is visible to all files of the package it belongs to
 
-        * Uppercase declarations are exported
-        * package names are always lowercase
+    * Uppercase declarations are exported
+    * package names are always lowercase
 
     No limit on name length but idiomatic to use descriptive names for larger scopes
-        * (i vs. theLoopIndex)
+    * (i vs. theLoopIndex)
 
     Camel Case is preferred 
     acronyms should be capitalized (escapeHtml vs escapeHTML)
@@ -48,13 +48,13 @@
 ## Variables
 
     A var declaration creates a variable of a particular type, attaches a aname to it and sets its initial value.
-     * var **name type** = **expression**
-     * either the **type** or **expression** may be omitted but not both
-     * If **type** is omitted then the type is determined from the expression
-     * If the **expression** is omitted then the initial value is the zero value for the declared type
-     * 0, false, "", nil, []int{0} 
+* var **name type** = **expression**
+* either the **type** or **expression** may be omitted but not both
+* If **type** is omitted then the type is determined from the expression
+* If the **expression** is omitted then the initial value is the zero value for the declared type
+* 0, false, "", nil, []int{0} 
 
-     * no such thing as an uninitialized variable
+* no such thing as an uninitialized variable
      ```Go
         var s string
         fmt.Println(s) // ""
@@ -65,18 +65,18 @@
         var b, f, s = true, 2.3, "four" // bool, float64, string
     ```
 
-    * package level variables are initialized before main begins
-    * local variables are initialized as their declarations are encountered during function execution
+* package level variables are initialized before main begins
+* local variables are initialized as their declarations are encountered during function execution
 
-    * set of variables can be initialized by a function that returns variables
+* set of variables can be initialized by a function that returns variables
     ```Go
         var f, err = os.Open(**name**)
     ```
 
 ### Short Variable Declarations
-    * **name** := **expression**
+* **name** := **expression**
 
-    * type of **name** is determined by the type of **expression**
+* type of **name** is determined by the type of **expression**
 
     ```Go
         anim := gif.GIF{loopCount: nframes}
@@ -84,8 +84,8 @@
         t := 0.0
     ```
 
-    * Used to declare the majority of local variables
-    * var typically is reserved for declarations that need an explicit type that differs from that of the initializer expression
+* Used to declare the majority of local variables
+* var typically is reserved for declarations that need an explicit type that differs from that of the initializer expression
     
     ```Go
         i := 0                      \\ an int
@@ -97,8 +97,8 @@
         i, j := 0, 1
     ```
     but should only be used when they help readability
-    * := is a declaration
-    * = is an assignment
+* := is a declaration
+* = is an assignment
     ```Go
         i, j = j, i // swap values of i and j
     ```
@@ -108,14 +108,14 @@
         f, err := os.Open(**name**)
     ```
 
-    * One subtle  but important point is that a short declaration does not necessarily **declare** all the variables on its left hand side. If some were already declared in the same lexical block then it acts as an assignment
+* One subtle  but important point is that a short declaration does not necessarily **declare** all the variables on its left hand side. If some were already declared in the same lexical block then it acts as an assignment
 
     ```Go
         in, err := os.Open(**name**) // declares both in and err
         out, err := os.Create(**name**) // declares out but assigns a value to the existing err
     ```
 
-    * a sort declaration must declare at least one new variable
+* a sort declaration must declare at least one new variable
     ```Go
         f, err := os.Open(**name**)
         f, err := os.Create(**name**) // won't compile compile error: no new variables
@@ -134,10 +134,10 @@
     ```
 
     the expression **&x**  ("the address of **x**") yields a pointer to an integer variable that is a value of type *int ("pointer to int")
-    * if it is called "p" we say that "p points to x" or "p contains the address to x"
-    * the variable to which p points is written as *p. 
-    * the expression *p yields the value of that variable, an int
-    * since *p denotes a variable it may be placed on the left hand side of an assignment, in which case the assignment updates the variable
+* if it is called "p" we say that "p points to x" or "p contains the address to x"
+* the variable to which p points is written as *p. 
+* the expression *p yields the value of that variable, an int
+* since *p denotes a variable it may be placed on the left hand side of an assignment, in which case the assignment updates the variable
 
     ```Go
         x := 1
@@ -147,18 +147,18 @@
         fmt.Println(x)  // "2"
     ```
 
-    * Each component of an aggregate type (field on a struct or element of an array) is a variable and therefore has an address
+* Each component of an aggregate type (field on a struct or element of an array) is a variable and therefore has an address
 
-    * zero value of a pointer is nil
-    * p != nil is true if **p** points to a variable
-    * pointers are comparable, they are equal only if they both point to the same address/variable, or both are nil
+* zero value of a pointer is nil
+* p != nil is true if **p** points to a variable
+* pointers are comparable, they are equal only if they both point to the same address/variable, or both are nil
 
     ```Go
         var x, y int
         fmt.Println(&x == &x, &x == &y, &x == nil) 
     ```
 
-    * if a function returns the address to a local variable, the local variable will stay in existence even after the function has returned
+* if a function returns the address to a local variable, the local variable will stay in existence even after the function has returned
 
     ```Go
         var p = f()
@@ -168,13 +168,13 @@
             return &v
         }
     ```
-    * each call to f returns a distinct value
+* each call to f returns a distinct value
 
     ```Go
         fmt.Println(f() == f())  // "false"
     ```
 
-    * Since a pointer contains the address of a variable, passing a pointer argument to a function makes it possible for the function to update the variable that was indirectly passed.
+* Since a pointer contains the address of a variable, passing a pointer argument to a function makes it possible for the function to update the variable that was indirectly passed.
 
     ```Go
         func incr(p *int) int {
