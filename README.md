@@ -1,53 +1,53 @@
 # Program Structure
-    Basic structural elements of a Go program
+Basic structural elements of a Go program
 
 ## Names
 
-    A name begins with a letter or an underscore
-    May have any number of aditional letters, digitds and underscores
+A name begins with a letter or an underscore
+May have any number of aditional letters, digitds and underscores
 
 * case matters (heapSort vs. HeapSort)
 
-    Go has 25 keywords
+* Go has 25 keywords
 
-    ~ three dozen predeclared names (int, true, new)
-    * Constants, Types, Functions 
-    * not reserved
+About three dozen predeclared names (int, true, new)
+* Constants, Types, Functions 
+* not reserved
     
-    If an entity is declared within a function it is local to that function
+If an entity is declared within a function it is local to that function
 
-    If declared outside the function it is visible to all files of the package it belongs to
+If declared outside the function it is visible to all files of the package it belongs to
 
-    * Uppercase declarations are exported
-    * package names are always lowercase
+* Uppercase declarations are exported
+* package names are always lowercase
 
-    No limit on name length but idiomatic to use descriptive names for larger scopes
-    * (i vs. theLoopIndex)
+No limit on name length but idiomatic to use descriptive names for larger scopes
+* (i vs. theLoopIndex)
 
-    Camel Case is preferred 
-    acronyms should be capitalized (escapeHtml vs escapeHTML)
+Camel Case is preferred 
+acronyms should be capitalized (escapeHtml vs escapeHTML)
 
 ## Declarations
 
-    declaration names a program entity and specifies some or all of its properties.
+declaration names a program entity and specifies some or all of its properties.
 
-    Four major kinds of declarations:
-        1. var
-        2. const
-        3. type
-        4. func
+Four major kinds of declarations:
+1. var
+2. const
+3. type
+4. func
     
-    A Go program is stored in one or more files that end in .go
+ A Go program is stored in one or more files that end in .go
 
-    A Go file begins with a package declaration, followed by import declarations, then a sequence of package-level declarations of types, variables, constants, and functions.
+A Go file begins with a package declaration, followed by import declarations, then a sequence of package-level declarations of types, variables, constants, and functions.
 
-    https://play.golang.com/p/lEsrLUSWhdO
+[Example 1](https://play.golang.com/p/lEsrLUSWhdO)
 
-    https://play.golang.com/p/Qkbxt-mf-da
+[Example 2](https://play.golang.com/p/Qkbxt-mf-da)
 
 ## Variables
 
-    A var declaration creates a variable of a particular type, attaches a aname to it and sets its initial value.
+A var declaration creates a variable of a particular type, attaches a aname to it and sets its initial value.
 * var **name type** = **expression**
 * either the **type** or **expression** may be omitted but not both
 * If **type** is omitted then the type is determined from the expression
@@ -70,7 +70,7 @@
 
 * set of variables can be initialized by a function that returns variables
     ```Go
-        var f, err = os.Open(**name**)
+        var f, err = os.Open(name)
     ```
 
 ### Short Variable Declarations
@@ -105,28 +105,28 @@
 
     may be used for calls to functions that return two or more variables
     ```Go
-        f, err := os.Open(**name**)
+        f, err := os.Open(name)
     ```
 
 * One subtle  but important point is that a short declaration does not necessarily **declare** all the variables on its left hand side. If some were already declared in the same lexical block then it acts as an assignment
 
     ```Go
-        in, err := os.Open(**name**) // declares both in and err
-        out, err := os.Create(**name**) // declares out but assigns a value to the existing err
+        in, err := os.Open(name) // declares both in and err
+        out, err := os.Create(name) // declares out but assigns a value to the existing err
     ```
 
 * a sort declaration must declare at least one new variable
     ```Go
-        f, err := os.Open(**name**)
-        f, err := os.Create(**name**) // won't compile compile error: no new variables
+        f, err := os.Open(name)
+        f, err := os.Create(name) // won't compile compile error: no new variables
     ```
 
 ### Pointers
 
-    A pointer value is the **address** of a variable.
-        * The location at which a value is stored
-        * not every value has an address but every variable does
-        * can read or update the value of a variable indirectly without even knowing the name of the variable
+A pointer value is the **address** of a variable.
+* The location at which a value is stored
+* not every value has an address but every variable does
+* can read or update the value of a variable indirectly without even knowing the name of the variable
 
     If a variable is declared:
     ```Go
